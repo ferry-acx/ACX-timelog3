@@ -42,7 +42,7 @@ class LoginController extends Controller
 
     protected function login( Request $request ){
         $credentials = $request->validate([
-            'email'=>'required|email',
+            'username'=>'required',
             'password'=>'required'
         ]);
 
@@ -53,10 +53,13 @@ class LoginController extends Controller
             }
 
             switch($user){
-                case 'admin':
+                case 1:
                     return redirect()->route('admin.dashboard');
                     break;
-                case 'user':
+                case 2:
+                    return redirect()->route('staff.dashboard');
+                    break;
+                case 3:
                     return redirect()->route('staff.dashboard');
                     break;
                 default:
@@ -65,7 +68,7 @@ class LoginController extends Controller
             }
 
         } else {
-            return redirect('/login');
+            return redirect('/login')->with('error', 'Incorrect credentials');
         }
     }
 }

@@ -21,11 +21,11 @@ class Staff
         }
 
         $user = Auth::user();
-        if($user->role=='user') {
+        if($user->role==2 || $user->role==3) {
             return $next($request);
         }
 
-        if($user->role=='admin'){
+        if($user->role==1){
             return redirect()->route('admin.dashboard');
         }
     }

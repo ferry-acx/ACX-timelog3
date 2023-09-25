@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Auth;
 
-class Admin
+class ProjectCoordinator
 {
     /**
      * Handle an incoming request.
@@ -16,18 +16,18 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::check()) {
-            return redirect('/login');
-        }
-
         $user = Auth::user();
-        if($user->role==1) {
+
+        if($user->role==3) {
             return $next($request);
         }
 
-        if($user->role==2 || $user->role==3){
+        if($user->role==2){
             return redirect()->route('staff.dashboard');
         }
 
+        if($user->role==1){
+            return redirect()->route('admin.dashboard');
+        }
     }
 }

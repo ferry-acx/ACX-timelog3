@@ -18,8 +18,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'id',
+        'employee_id',
+        'first_name',
+        'last_name',
+        'username',
+        'division',
+        'position',
         'role',
         'password',
     ];
@@ -40,7 +45,14 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function attendances(){
+        return $this->hasMany(Attendance::class);
+    }
+
+    public function pods(){
+        return $this->hasMany(Pod::class);
+    }
 }

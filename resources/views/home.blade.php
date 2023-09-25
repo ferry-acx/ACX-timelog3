@@ -14,7 +14,12 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('You are logged in!') }} <br>
+                    {{ Auth::user()->first_name.' '.Auth::user()->last_name }} <br>
+                    {{ Auth::user()->username }} <br>
+                    {{ Auth::user()->division }} <br>
+                    {{ Auth::user()->position }} <br>
+                    {{ Auth::user()->access_lvl }} <br>
                 </div>
             </div>
         </div>

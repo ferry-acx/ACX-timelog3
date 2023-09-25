@@ -18,10 +18,13 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'role' => fake()->randomElement(['user','admin']),
+            'employee_id' => Str::random(5),
+            'username' => Str::random(5),
+            'first_name' => fake()->name,
+            'last_name' => fake()->name,
+            'division' => fake()->randomElement(['core','relevate','publishing']),
+            'access_lvl' => fake()->randomElement(['1','3']),
+            'position' =>fake()->randomElement(['graphics','content','pc','web dev']),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];
